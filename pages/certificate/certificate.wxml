@@ -1,0 +1,26 @@
+<view class="question-form">
+  <view class="question-images-area">
+      <!-- 添加图片按钮  -->
+    <view class="question-images-tool">
+      <button type="default" size="mini" bindtap="chooseImage" wx:if="{{images.length < 6}}">上传行驶证图片</button>
+    </view>
+
+    <view class="question-images">
+        <view class="q-image-wrap">
+          <!-- 图片缩略图  -->
+          <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="1" bindtap="handleDemoImagePreview"></image>
+          <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="1" bindtap="handleDemoImagePreview"></image>
+        </view>
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="q-image-wrap">
+          <!-- 图片缩略图  -->
+          <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+          <!-- 移除图片的按钮  -->
+          <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view>
+        </view>
+      </block>
+    </view>
+  </view>
+    <!-- 提交表单按钮 -->
+  <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+</view>

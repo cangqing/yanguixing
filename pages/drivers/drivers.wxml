@@ -1,0 +1,39 @@
+<template name="drivers">
+  <form bindsubmit="publishPassengerRoute">
+    <view style="display: flex;flex-direction: column;">
+        <input name="startLocaion" style='padding: 10rpx;width:300px;margin-top: 10px;' value="{{address}}"></input>
+      <input name="endLocation" style='padding: 10rpx;width:300px;'placeholder="想要去哪儿"></input>
+ <picker style="padding: 40rpx;line-height:20rpx;" mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+  出发时间: {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
+ </picker>
+      <input name="price" style='text-align: center;width:150px;margin-bottom: 10px;'placeholder="出价（单位：元）"></input>
+      <view class="btn-area">
+        <button type="primary" formType="submit">发布行程</button>
+      </view>
+    </view>
+  </form>
+  <block wx:for="{{drivers}}" wx:for-item="driver">
+    <view class="list-item" bindtap="detail">
+      <view style="width: 60px; height: 60px;margin:10px">
+          <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="../../resources/cat.png"></image>
+      </view>
+      <view class='right'>
+        <view style="display: flex;flex-direction: column;height:40px;border-block-start: 10px;">
+            <label class='title'>{{driver}}</label>
+            <label class='title'>{{driver}}</label>
+        </view>
+        <label class='time'>time</label>
+      </view>
+    </view>
+    <view style="display: flex;margin-block-start:40px;margin-bottom: 30px;">
+    <view style="display: flex; flex-direction: row;">
+      <view style="display: flex;flex-direction: column;margin:10px">
+            <label class='title'>{{driver}}</label>
+            <label class='title'>{{driver}}</label>
+            <label class='title'>{{driver}}</label>
+        </view>
+        <label style="margin-left: 100px;">price</label>
+    </view>
+    </view>
+  </block>
+</template>

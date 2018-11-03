@@ -1,0 +1,14 @@
+  <view>
+      <image style="width: 50px; height: 50px; background-color: #eeeeee;" mode="{{driver}}" src="../../resources/cat.png"></image>
+      <view>10月2日07:20</view>
+      <view>From：杭州</view>
+      <view>To：武汉</view>
+      <view class="driver-item">199元</view>
+      <map class="map" longitude="120.19" latitude="30.26"></map>
+  </view>
+<form bindsubmit="formSubmit" report-submit="true">
+   <view class="btn-area">
+     <button formType="submit" lang="zh_CN" type="primary">{{isDriver=='true'?'接单':'请他来接我'}}</button>
+  </view>
+</form>
+   

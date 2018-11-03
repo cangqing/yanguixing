@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="nav">
+  <view class='{{isDriver?"default":"red"}}'bindtap="passengerTabed">我是乘客</view>
+  <view class='{{isDriver?"red":"default"}}' bindtap="driverTabed">我是司机</view>
+</view>
+<view class='{{isDriver?"show":"hidden"}}'>
+  <import src="../passengers/passengers.wxml"/>
+  <template is="passengers" data="{{dateTimeArray:dateTimeArray,dateTime:dateTime,address:address,passengers: ['passenger1','passenger2']}}"/>
+</view>
+<view class="{{isDriver?'hidden':'show'}}">
+ <import src="../drivers/drivers.wxml"/>
+ <template is="drivers" data="{{dateTimeArray:dateTimeArray,dateTime:dateTime,address:address,drivers: ['driver1','driver2']}}"/>
+</view>

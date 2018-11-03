@@ -1,0 +1,8 @@
+<view>
+  <view style="display: flex;flex-direction:row;">
+    <input style='width:150px;height:10px;margin-top: 10px;' placeholder="请输入企业邮箱"></input>
+    <button size="mini">发送验证码</button>
+  </view>
+    <input style='width:250px;height:10px;margin-top: 10px;' placeholder="请输入验证码"></input>
+  <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+  </view>
