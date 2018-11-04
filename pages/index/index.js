@@ -4,23 +4,26 @@ var WxSearch = require('../wxSearch/wxSearch.js')
 var app = getApp()
 Page({
   data: {
+    isDriver: false,
+    isStartPos:true,
     wxSearchData:{
       view:{
         mindKeys: null
       }
     }
   },
-  onLoad: function () {
+  onLoad: function (options) {
     var that = this
+    this.setData({ isDriver: options.isDriver, isStartPos: options.isStartPos })
     //初始化的时候渲染wxSearchdata
     WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
     WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
   },
-  wxSearchFn: function (e) {
-    var that = this
-    WxSearch.wxSearchAddHisKey(that);
-    console.log(e)
-  },
+  // wxSearchFn: function (e) {
+  //   var that = this
+  //   WxSearch.wxSearchAddHisKey(that);
+  //   console.log(e)
+  // },
   wxSearchInput: function (e) {
     var that = this
     console.log("Searching " + e.detail.value)
@@ -75,11 +78,17 @@ Page({
   },
   confirm: function (event) {
     console.log(event)
+    WxSearch.wxSearchAddHisKey(this);
     let pages = getCurrentPages();//当前页面
     let prevPage = pages[pages.length - 2];//上一页面
-    prevPage.setData({//直接给上移页面赋值
-      endPosition: event.detail.value.position
-    });
+    var data={}
+    if (this.data.isStartPos=='true'){
+      data = { isStartPos:this.data.isStartPos,startLocation: event.detail.value.position}
+    }else{
+      data = { isStartPos: this.data.isStartPos,endLocation: event.detail.value.position }
+    }
+    //直接给上移页面赋值
+    prevPage.setData(data);
     wx.navigateBack({
       delta: 1
     })

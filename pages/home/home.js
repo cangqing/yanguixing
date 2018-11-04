@@ -1,12 +1,19 @@
 //index.js
 var dateTimePicker = require('../../utils/dateTimePicker.js');
+var publishRoute = require('../../utils/publishRoute.js');
+const db = wx.cloud.database()
 
 Page({
   data: {
     isDriver: false,
+    //当前位置
     address: '',
-    startPosition:null,
-    endPosition:null,
+    //坐标
+    startPoint:null,
+    endPoint:null,
+    //具体位置
+    startLocation:null,
+    endLocation:null,
     dateTimeArray: null,
     dateTime: null
   },
@@ -22,10 +29,17 @@ Page({
     this.setData({ isDriver: true })
   },
   detail: function (event) {
-    console.log(event.detail.value.position)
-    wx.switchTab({
-      url: '../home/home?isDriver=' + event.detail.value.position
+    console.log(event)
+    wx.navigateTo({
+      url: '../detail/detail?isDriver=' + this.data.isDriver
     })
+  },
+  publishPassengerRoute: function (event){
+    console.log(event)
+    publishRoute.addRoute(db, 'passenger_route', event, getApp().globalData.userInfo)
+  },
+  publishDriverRoute: function (event) {
+    publishRoute.addRoute(db, 'driver_route', event, getApp().globalData.userInfo)
   },
   changeDateTime: function(e) {
     this.setData({ dateTime: e.detail.value });
@@ -69,10 +83,16 @@ Page({
       }
     })
   },
+  inputStartPosition: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '../index/index?isStartPos=true&isDriver=' + this.data.isDriver
+    })
+  },
   inputEndPosition: function (e) {
     console.log(e)
     wx.navigateTo({
-      url: '../index/index'
+      url: '../index/index?isStartPos=false&isDriver=' + this.data.isDriver
     })
   }
 })

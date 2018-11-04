@@ -1,21 +1,4 @@
 <template name="passengers">
- <form bindsubmit="publishDriverRoute">
-  <view style="display: flex;flex-direction: column;">
-    <view style="display: flex;flex-direction:row;">
-      <input name="startLocation" style='width:300px;height:10px;margin-top: 10px;' value="{{address}}"></input>
-    </view>
-    <view style="display: flex;flex-direction:row;">
-    <input name="endLocation" bindfocus="inputEndPosition" style='width:300px;height:10px;'placeholder="想要去哪儿"></input>
-    </view>
-    <view style="display: flex;flex-direction:row;">
-
-      <input name="price" style='width:100px;height:10px;'placeholder="出价（元）"></input>
-    </view>
-    <view class="btn-area">
-      <button type="primary" formType="submit">发布行程</button>
-    </view>
-    </view>
-  </form>
   <block wx:for="{{passengers}}" wx:for-item="passenger">
     <view class="list-item" bindtap="detail">
       <view style="width: 60px; height: 60px;margin:10px">

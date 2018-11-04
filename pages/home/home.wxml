@@ -4,10 +4,14 @@
   <view class='{{isDriver?"red":"default"}}' bindtap="driverTabed">我是司机</view>
 </view>
 <view class='{{isDriver?"show":"hidden"}}'>
+  <import src="../home/publishRoute.wxml"/>
+  <template is="publishRoute" data="{{isDriver:isDriver,startLocation:startLocation,endLocation:endLocation,dateTimeArray:dateTimeArray,dateTime:dateTime}}"/>
   <import src="../passengers/passengers.wxml"/>
-  <template is="passengers" data="{{dateTimeArray:dateTimeArray,dateTime:dateTime,address:address,endPosition:endPosition,passengers: ['passenger1','passenger2']}}"/>
+  <template is="passengers" data="{{passengers: ['passenger1','passenger2']}}"/>
 </view>
 <view class="{{isDriver?'hidden':'show'}}">
+ <import src="../home/publishRoute.wxml"/>
+ <template is="publishRoute" data="{{isDriver:isDriver,startLocation:startLocation,endLocation:endLocation,dateTimeArray:dateTimeArray,dateTime:dateTime}}"/>
  <import src="../drivers/drivers.wxml"/>
- <template is="drivers" data="{{dateTimeArray:dateTimeArray,dateTime:dateTime,address:address,endPosition:endPosition,drivers: ['driver1','driver2']}}"/>
+ <template is="drivers" data="{{drivers: ['driver1','driver2']}}"/>
 </view>
