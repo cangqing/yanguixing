@@ -5,6 +5,8 @@ Page({
   data: {
     isDriver: false,
     address: '',
+    startPosition:null,
+    endPosition:null,
     dateTimeArray: null,
     dateTime: null
   },
@@ -20,9 +22,9 @@ Page({
     this.setData({ isDriver: true })
   },
   detail: function (event) {
-    console.log(event)
-    wx.navigateTo({
-      url: '../detail/detail?isDriver=' + this.data.isDriver
+    console.log(event.detail.value.position)
+    wx.switchTab({
+      url: '../home/home?isDriver=' + event.detail.value.position
     })
   },
   changeDateTime: function(e) {
@@ -65,6 +67,12 @@ Page({
       fail: function (res) {
         console.log(res);
       }
+    })
+  },
+  inputEndPosition: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '../index/index'
     })
   }
 })

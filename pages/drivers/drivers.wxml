@@ -2,7 +2,7 @@
   <form bindsubmit="publishPassengerRoute">
     <view style="display: flex;flex-direction: column;">
         <input name="startLocaion" style='padding: 10rpx;width:300px;margin-top: 10px;' value="{{address}}"></input>
-      <input name="endLocation" style='padding: 10rpx;width:300px;'placeholder="想要去哪儿"></input>
+      <input name="endLocation" bindfocus="inputEndPosition" style='padding: 10rpx;width:300px;'placeholder="想要去哪儿" value="{{endPosition}}"></input>
  <picker style="padding: 40rpx;line-height:20rpx;" mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
   出发时间: {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
  </picker>

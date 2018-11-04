@@ -5,7 +5,7 @@
       <input name="startLocation" style='width:300px;height:10px;margin-top: 10px;' value="{{address}}"></input>
     </view>
     <view style="display: flex;flex-direction:row;">
-    <input name="endLocation" style='width:300px;height:10px;'placeholder="想要去哪儿"></input>
+    <input name="endLocation" bindfocus="inputEndPosition" style='width:300px;height:10px;'placeholder="想要去哪儿"></input>
     </view>
     <view style="display: flex;flex-direction:row;">
 
