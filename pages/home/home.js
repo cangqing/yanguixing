@@ -15,7 +15,9 @@ Page({
     startLocation:null,
     endLocation:null,
     dateTimeArray: null,
-    dateTime: null
+    dateTime: null,
+    driverRoute:null,
+    passengerRoute:null
   },
   //事件处理函数
   bindViewTap: function () {
@@ -37,9 +39,12 @@ Page({
   publishPassengerRoute: function (event){
     console.log(event)
     publishRoute.addRoute(db, 'passenger_route', event, getApp().globalData.userInfo)
+    publishRoute.get_driver_route(db, this)
   },
   publishDriverRoute: function (event) {
+    console.log(event)
     publishRoute.addRoute(db, 'driver_route', event, getApp().globalData.userInfo)
+    publishRoute.get_passenger_route(db, this)
   },
   changeDateTime: function(e) {
     this.setData({ dateTime: e.detail.value });
@@ -67,6 +72,7 @@ Page({
     });
 
     var that = this;
+    publishRoute.get_driver_route(db, this)
     getApp().globalData.qqmapsdk.reverseGeocoder({
       location: {
         latitude: getApp().globalData.location.latitude,
@@ -84,13 +90,13 @@ Page({
     })
   },
   inputStartPosition: function (e) {
-    console.log(e)
+    console.log("bindfocus start")
     wx.navigateTo({
       url: '../index/index?isStartPos=true&isDriver=' + this.data.isDriver
     })
   },
   inputEndPosition: function (e) {
-    console.log(e)
+    console.log("bindfocus end")
     wx.navigateTo({
       url: '../index/index?isStartPos=false&isDriver=' + this.data.isDriver
     })

@@ -1,25 +1,24 @@
 <template name="drivers">
-  <block wx:for="{{drivers}}" wx:for-item="driver">
+  <block wx:for="{{driverRoute}}" wx:for-item="driver">
     <view class="list-item" bindtap="detail">
       <view style="width: 60px; height: 60px;margin:10px">
           <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="../../resources/cat.png"></image>
       </view>
       <view class='right'>
         <view style="display: flex;flex-direction: column;height:40px;border-block-start: 10px;">
-            <label class='title'>{{driver}}</label>
-            <label class='title'>{{driver}}</label>
+            <label class='title'>{{driver.userInfo.gender}}</label>
+            <label class='title'>{{driver.userInfo.nickName}}</label>
         </view>
-        <label class='time'>time</label>
+        <label class='time'>{{driver.routeTime}}</label>
       </view>
     </view>
     <view style="display: flex;margin-block-start:40px;margin-bottom: 30px;">
     <view style="display: flex; flex-direction: row;">
       <view style="display: flex;flex-direction: column;margin:10px">
-            <label class='title'>{{driver}}</label>
-            <label class='title'>{{driver}}</label>
-            <label class='title'>{{driver}}</label>
+            <label class='title'>{{driver.startLocaion}}</label>
+            <label class='title'>{{driver.endLocaion}}</label>
         </view>
-        <label style="margin-left: 100px;">price</label>
+        <label style="margin-left: 100px;">{{driver.price}}</label>
     </view>
     </view>
   </block>

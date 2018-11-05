@@ -1,9 +1,9 @@
 <template name="publishRoute">
-  <form bindsubmit="{{(isDriver=='true')?'publishDriverRoute':'publishPassengerRoute'}}">
+  <form bindsubmit="{{isDriver?'publishDriverRoute':'publishPassengerRoute'}}">
       <view style="display: flex;flex-direction: column;">
-          <input name="startLocaion" bindfocus="inputStartPosition" style='padding: 10rpx;width:300px;margin-top: 10px;' placeholder="当前位置?" value="{{startLocation}}"></input>
-          <input name="endLocation" bindfocus="inputEndPosition" style='padding: 10rpx;width:300px;'placeholder="想要去哪儿?" value="{{endLocation}}"></input>
-          <input name="price" style='padding: 10rpx;width:300px;'placeholder="出价（单位:元）"></input>
+          <input name="startLocaion" bindtap="inputStartPosition" style='padding: 10rpx;width:300px;margin-top: 10px;' placeholder="当前位置?" value="{{startLocation}}"></input>
+          <input name="endLocation" bindtap="inputEndPosition" style='padding: 10rpx;width:300px;'placeholder="想要去哪儿?" value="{{endLocation}}"></input>
+          <input name="price" type="number"style='padding: 10rpx;width:300px;'placeholder="出价（单位:元）"></input>
           <picker name="routeTime" style="padding: 40rpx;line-height:20rpx;" mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
             出发时间: {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
           </picker>

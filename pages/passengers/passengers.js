@@ -1,16 +1,18 @@
 // pages/drivers/drivers.js
+var publishRoute = require('../../utils/publishRoute.js');
+const db = wx.cloud.database()
 Page({
   /**
    * Page initial data
    */
   data: {
-    passengers:'passengers'
+    passengerRoute:'passengers'
   },
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    publishRoute.get_driver_route(db, this)
   },
 
   /**

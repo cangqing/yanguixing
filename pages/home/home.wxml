@@ -13,5 +13,5 @@
  <import src="../home/publishRoute.wxml"/>
  <template is="publishRoute" data="{{isDriver:isDriver,startLocation:startLocation,endLocation:endLocation,dateTimeArray:dateTimeArray,dateTime:dateTime}}"/>
  <import src="../drivers/drivers.wxml"/>
- <template is="drivers" data="{{drivers: ['driver1','driver2']}}"/>
+ <template is="drivers" data="{{driverRoute: driverRoute}}"/>
 </view>

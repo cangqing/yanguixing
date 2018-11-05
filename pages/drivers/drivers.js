@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-    drivers:'drivers'
+    driverRoute:null
   },
 
   driverDetail: function (event) {
@@ -18,7 +18,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    publishRoute.get_driver_route(db, this)
   },
 
   /**
