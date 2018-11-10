@@ -6,6 +6,8 @@ Page({
   data: {
     isDriver: false,
     isStartPos:true,
+    queryLocations:[],
+    selectedLocation:null,
     wxSearchData:{
       view:{
         mindKeys: null
@@ -26,6 +28,7 @@ Page({
   // },
   wxSearchInput: function (e) {
     var that = this
+    this.data.queryLocations=[]
     console.log("Searching " + e.detail.value)
     getApp().globalData.qqmapsdk.getSuggestion({
       keyword: e.detail.value,
@@ -34,7 +37,8 @@ Page({
         console.log(res);
         var targets=new Array()
         for (let i = 0; i < res.count; ++i) {
-          targets.push(res.data[i].address)
+          targets.push(res.data[i].title)
+          that.data.queryLocations[res.data[i].title] = res.data[i]
         }
         console.log(targets)
         WxSearch.initMindKeys(targets)
@@ -61,7 +65,8 @@ Page({
   wxSearchKeyTap: function (e) {
     var that = this
     WxSearch.wxSearchKeyTap(e, that);
-    console.log("wxSearchKeyTap"+e)
+    this.data.selectedLocation = this.data.queryLocations[e.target.dataset.key]
+    console.log("selected address:" + this.data.selectedLocation.address)
   },
   wxSearchDeleteKey: function (e) {
     var that = this
@@ -83,9 +88,9 @@ Page({
     let prevPage = pages[pages.length - 2];//上一页面
     var data={}
     if (this.data.isStartPos=='true'){
-      data = { isStartPos:this.data.isStartPos,startLocation: event.detail.value.position}
+      data = { isStartPos: this.data.isStartPos, startLocation: this.data.selectedLocation}
     }else{
-      data = { isStartPos: this.data.isStartPos,endLocation: event.detail.value.position }
+      data = { isStartPos: this.data.isStartPos, endLocation: this.data.selectedLocation}
     }
     //直接给上移页面赋值
     prevPage.setData(data);

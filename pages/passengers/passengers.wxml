@@ -1,5 +1,5 @@
 <template name="passengers">
-  <block wx:for="{{passengers}}" wx:for-item="passenger">
+  <block wx:for="{{passengerRoute}}" wx:for-item="passenger">
     <view class="list-item" bindtap="detail">
       <view style="width: 60px; height: 60px;margin:10px">
           <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="../../resources/cat.png"></image>

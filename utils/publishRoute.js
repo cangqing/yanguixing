@@ -9,12 +9,21 @@ function addRoute(db,collect,event,userInfo){
       // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
       publishDate: utils.formatTime(new Date()),
       userInfo: userInfo,
-      // startPoint: new db.Geo.Point(event.detail.value.logitude, event.detail.value.latitude),
       // endPoint: new db.Geo.Point(113, 23),
-      startLocaion: event.detail.value.startLocaion,
-      endLocaion: event.detail.value.endLocation,
+      startLocation: {
+        address:event.detail.value.startLocaion,
+        addr: event.detail.value.startAddr,
+        longitude: event.detail.value.startLongitude,                         latitude:event.detail.value.startLatitude
+      },
+      endLocation: {
+        address:event.detail.value.endLocation,
+        addr: event.detail.value.endAddr,
+        longitude: event.detail.value.endLongitude, 
+        latitude:event.detail.value.endLatitude
+      },
       price: event.detail.value.price,
-      routeTime: event.detail.value.routeTime
+      routeTime: event.detail.value.routeTime,
+      routeTimeMills: new Date(event.detail.value.routeTimeMills).getTime()
     },
     success: function (res) {
       // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
@@ -29,7 +38,7 @@ function get_driver_route(db, that){
   db.collection('driver_route').get({
       success: function (res) {
         // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
-        that.setData({ driverRoute: res.data})
+        that.setData({ routes: res.data})
         console.log(res.data)
       },
       fail: function (res) {
@@ -42,7 +51,7 @@ function get_passenger_route(db, that) {
   db.collection('passenger_route').get({
     success: function (res) {
       // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
-      that.setData({ passengerRoute: res.data })
+      that.setData({ routes: res.data })
       console.log(res.data)
     },
     fail: function (res) {
@@ -53,5 +62,6 @@ function get_passenger_route(db, that) {
 
 module.exports = {
   addRoute: addRoute,
-  get_driver_route:get_driver_route
+  get_driver_route:get_driver_route,
+  get_passenger_route:get_passenger_route
 }

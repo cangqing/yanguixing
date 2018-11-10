@@ -31,7 +31,7 @@
       },
       {
         "text": "消息",
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/drivers/drivers",
         "iconPath": "resources/icon_cate.png",
         "selectedIconPath": "resources/icon_home.png"
       },

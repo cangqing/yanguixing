@@ -1,9 +1,23 @@
   <view>
-      <image style="width: 50px; height: 50px; background-color: #eeeeee;" mode="{{driver}}" src="../../resources/cat.png"></image>
-      <view>10月2日07:20</view>
-      <view>From：杭州</view>
-      <view>To：武汉</view>
-      <view class="driver-item">199元</view>
+    <view style="width: 60px; height: 60px;margin:10px">
+        <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="{{route.userInfo.avatarUrl}}"></image>
+    </view>
+    <view class='right'>
+      <view style="display: flex;flex-direction: column;height:40px;border-block-start: 10px;">
+          <label class='title'>{{route.userInfo.gender}}</label>
+          <label class='title'>{{route.userInfo.nickName}}</label>
+      </view>
+      <label class='price'>¥{{route.price}}</label>
+    </view>
+  <view style="display: flex;margin-top:20px;">
+    <view style="display: flex; flex-direction:row;">
+      <view style="display: flex;flex-direction: column;margin:10px">
+            <label class='position'>{{route.startLocation.addr}}</label>
+            <label class='position'>{{route.endLocation.addr}}</label>
+            <label class='position'>{{route.routeTime}}</label>
+        </view>
+    </view>
+  </view>
       <map class="map" longitude="120.19" latitude="30.26"></map>
   </view>
 <form bindsubmit="formSubmit" report-submit="true">

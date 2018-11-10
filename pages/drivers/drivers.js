@@ -1,31 +1,38 @@
-// pages/drivers/drivers.js
-Page({
+//pages/drivers/drivers.js
+var publishRoute = require('../../utils/publishRoute.js');
+const db = wx.cloud.database()
 
+Page({
   /**
    * Page initial data
    */
   data: {
-    driverRoute:null
+    isDriver: false,
+    //推荐可接单的出行列表
+    routes: null
   },
-
-  driverDetail: function (event) {
-    console.log(event)
+  detail: function (event) {
     wx.navigateTo({
-      url: '../detail/detail'
+      url: '../detail/detail?isDriver=' + this.data.isDriver
     })
   },
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    publishRoute.get_driver_route(db, this)
+    this.setData({ isDriver: options.isDriver=='true'?true:false })
+    console.log("this.data.isDriver:" + this.data.isDriver)
+    if (this.data.isDriver)
+      publishRoute.get_passenger_route(db, this)
+    else
+      publishRoute.get_driver_route(db, this)
   },
 
   /**
    * Lifecycle function--Called when page is initially rendered
    */
   onReady: function () {
-
+    console.log("onReady")
   },
 
   /**

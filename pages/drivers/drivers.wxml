@@ -1,25 +1,24 @@
-<template name="drivers">
-  <block wx:for="{{driverRoute}}" wx:for-item="driver">
-    <view class="list-item" bindtap="detail">
-      <view style="width: 60px; height: 60px;margin:10px">
-          <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="../../resources/cat.png"></image>
-      </view>
-      <view class='right'>
-        <view style="display: flex;flex-direction: column;height:40px;border-block-start: 10px;">
-            <label class='title'>{{driver.userInfo.gender}}</label>
-            <label class='title'>{{driver.userInfo.nickName}}</label>
-        </view>
-        <label class='time'>{{driver.routeTime}}</label>
-      </view>
+{{isDriver?"寻找的乘客列表":"寻找的司机列表"}}
+<block wx:for="{{routes}}" wx:for-item="route">
+  <view class="list-item" bindtap="detail">
+    <view style="width: 60px; height: 60px;margin:10px">
+        <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="{{route.userInfo.avatarUrl}}"></image>
     </view>
-    <view style="display: flex;margin-block-start:40px;margin-bottom: 30px;">
-    <view style="display: flex; flex-direction: row;">
+    <view class='right'>
+      <view style="display: flex;flex-direction: column;height:40px;border-block-start: 10px;">
+          <label class='title'>{{route.userInfo.gender}}</label>
+          <label class='title'>{{route.userInfo.nickName}}</label>
+      </view>
+      <label class='price'>¥{{route.price}}</label>
+    </view>
+  </view>
+  <view style="display: flex;margin-top:20px;">
+    <view style="display: flex; flex-direction:row;">
       <view style="display: flex;flex-direction: column;margin:10px">
-            <label class='title'>{{driver.startLocaion}}</label>
-            <label class='title'>{{driver.endLocaion}}</label>
+            <label class='position'>{{route.startLocation.addr}}</label>
+            <label class='position'>{{route.endLocation.addr}}</label>
+            <label class='position'>{{route.routeTime}}</label>
         </view>
-        <label style="margin-left: 100px;">{{driver.price}}</label>
     </view>
-    </view>
-  </block>
-</template>
+  </view>
+</block>

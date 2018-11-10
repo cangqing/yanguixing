@@ -6,12 +6,8 @@
 <view class='{{isDriver?"show":"hidden"}}'>
   <import src="../home/publishRoute.wxml"/>
   <template is="publishRoute" data="{{isDriver:isDriver,startLocation:startLocation,endLocation:endLocation,dateTimeArray:dateTimeArray,dateTime:dateTime}}"/>
-  <import src="../passengers/passengers.wxml"/>
-  <template is="passengers" data="{{passengers: ['passenger1','passenger2']}}"/>
 </view>
 <view class="{{isDriver?'hidden':'show'}}">
  <import src="../home/publishRoute.wxml"/>
  <template is="publishRoute" data="{{isDriver:isDriver,startLocation:startLocation,endLocation:endLocation,dateTimeArray:dateTimeArray,dateTime:dateTime}}"/>
- <import src="../drivers/drivers.wxml"/>
- <template is="drivers" data="{{driverRoute: driverRoute}}"/>
 </view>

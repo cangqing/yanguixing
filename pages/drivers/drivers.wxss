@@ -13,6 +13,7 @@
   flex-direction: column;
   padding: 20rpx;
 }
+
 .driver-item {
   margin: 20rpx;
   align-items: right;
@@ -27,19 +28,30 @@
 
 .list-item{  
   height: 80rpx;  display: flex;
-  } 
+} 
 
-  .left{  width: 100rpx;  height:160rpx;} 
-  .right{ 
+.left{  width: 100rpx;  height:160rpx;} 
+
+.right{ 
+    margin-top: 10px;
     display: flex;  
     flex-direction: row;
     height: 40px;
-    } 
-  .title{ 
+} 
+
+.title{ 
     word-break: break-all;
     width: 100%;
     height: 20px;
-    } 
+    padding-bottom: 10px;
+} 
+
+.position{ 
+    word-break: break-all;
+    width: 100%;
+    height: 20px;
+    padding-top: 10px;
+}
+
 .name{  font-size: 50rpx;  color: #000;} 
-.phone{  font-size: 35rpx;  color:darkgrey;}  
-.time{  width: 200rpx;  color: #aaa;margin-left: 20px;}
+.price{  width: 200px;margin-top:20px;color: rgb(238, 44, 44);margin-left: 50px;}
