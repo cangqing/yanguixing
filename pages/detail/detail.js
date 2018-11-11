@@ -1,12 +1,14 @@
 // pages/drivers/drivers.js
-Page({
+var publishRoute = require('../../utils/publishRoute.js');
+const db = wx.cloud.database()
 
+Page({
   /**
    * Page initial data
    */
   data: {
-    drivers:'drivers',
-    isDriver:false
+    isDriver:false,
+    routes:null
   },
 
   onGotUserInfo: function (e) {
@@ -21,8 +23,16 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    console.log(options.isDriver)
-    this.setData({ isDriver: options.isDriver})
+    var isDriver=(options.isDriver == 'true' ? true : false);
+    var routeId=options.routeId
+    console.log(options)
+    if (isDriver)
+      publishRoute.get_driver_route(db, this, { _id: routeId})
+    else
+      publishRoute.get_passenger_route(db, this, { _id: routeId })
+    this.setData({
+      isDriver: isDriver,
+    })
   },
 
   /**

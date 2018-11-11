@@ -1,6 +1,6 @@
 {{isDriver?"寻找的乘客列表":"寻找的司机列表"}}
 <block wx:for="{{routes}}" wx:for-item="route">
-  <view class="list-item" bindtap="detail">
+  <view class="list-item" data-routeId="{{route._id}}" bindtap="detail">
     <view style="width: 60px; height: 60px;margin:10px">
         <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="{{route.userInfo.avatarUrl}}"></image>
     </view>
@@ -12,13 +12,11 @@
       <label class='price'>¥{{route.price}}</label>
     </view>
   </view>
-  <view style="display: flex;margin-top:20px;">
-    <view style="display: flex; flex-direction:row;">
-      <view style="display: flex;flex-direction: column;margin:10px">
-            <label class='position'>{{route.startLocation.addr}}</label>
-            <label class='position'>{{route.endLocation.addr}}</label>
-            <label class='position'>{{route.routeTime}}</label>
-        </view>
-    </view>
+  <view style="margin-top:30px;">
+    <view style="display: flex;flex-direction: column;margin:10px">
+        <label class='position'>{{route.startLocation.addr}}</label>
+        <label class='position'>{{route.endLocation.addr}}</label>
+        <label class='position'>{{route.routeTime}}</label>
+      </view>
   </view>
 </block>

@@ -1,5 +1,4 @@
 // 定义数据格式
-
 /***
  * 
  * "wxSearchData":{
@@ -14,7 +13,6 @@
  *  his:[]//历史搜索关键字
  *  value
  * }
- * 
  * 
  */
 var __keysColor = [];

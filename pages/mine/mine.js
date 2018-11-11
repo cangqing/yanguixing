@@ -14,10 +14,8 @@ Page({
     itemList: [
     { 'name': '车主认证', 'icon': '../../../images/address.png', 'url': '../certificate/certificate' },
       { 'name': '企业认证', 'icon': '../../../images/order.png', 'url': '../enterprise/enterprise' },
-    { 'name': '全部订单', 'icon': '../../../images/order.png', 'url': '' },
-    { 'name': '我的优惠券', 'icon': '../../../images/myCoupon.png', 'url': 'coupon' },
-    { 'name': '联系我们', 'icon': '../../../images/contact.png', 'url': '' },
-    { 'name': '店铺管理', 'icon': '../../../images/store.png', 'url': '' }
+      { 'name': '历史行程', 'icon': '../../../images/order.png', 'url': '../myroutes/myroutes' },
+    { 'name': '联系我们', 'icon': '../../../images/contact.png', 'url': '' }
     ]
   },
   navBtn: function (e) {

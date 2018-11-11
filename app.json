@@ -4,7 +4,7 @@
     "pages/home/home",
     "pages/index/index",
     "pages/drivers/drivers",
-    "pages/passengers/passengers",
+    "pages/myroutes/myroutes",
     "pages/logs/logs",
     "pages/detail/detail",
     "pages/certificate/certificate",

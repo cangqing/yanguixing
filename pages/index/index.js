@@ -8,18 +8,21 @@ Page({
     isStartPos:true,
     queryLocations:[],
     selectedLocation:null,
-    wxSearchData:{
-      view:{
-        mindKeys: null
+    wxSearchData: {
+      view: {
+        isShow: false,
+        mindKeys: null,
+        isShowSearchKey: false,
+        isShowSearchHistory: false
       }
     }
   },
   onLoad: function (options) {
     var that = this
-    this.setData({ isDriver: options.isDriver, isStartPos: options.isStartPos })
+    that.setData({ isDriver: options.isDriver, isStartPos: options.isStartPos })
     //初始化的时候渲染wxSearchdata
-    WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
-    WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+    WxSearch.init(that, 43, [], that.data.wxSearchData.view.isShowSearchKey, that.data.wxSearchData.view.isShowSearchHistory);
+    WxSearch.initMindKeys([]);
   },
   // wxSearchFn: function (e) {
   //   var that = this
@@ -66,7 +69,7 @@ Page({
     var that = this
     WxSearch.wxSearchKeyTap(e, that);
     this.data.selectedLocation = this.data.queryLocations[e.target.dataset.key]
-    console.log("selected address:" + this.data.selectedLocation.address)
+    console.log(this.data.selectedLocation)
   },
   wxSearchDeleteKey: function (e) {
     var that = this

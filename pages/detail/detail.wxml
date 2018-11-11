@@ -1,4 +1,5 @@
-  <view>
+  <view wx:for="{{routes}}" wx:for-item="route">
+   <view class="list-item">
     <view style="width: 60px; height: 60px;margin:10px">
         <image style="width: 60px; height: 60px; background-color: #eeeeee;" mode="{{driver}}" src="{{route.userInfo.avatarUrl}}"></image>
     </view>
@@ -9,20 +10,19 @@
       </view>
       <label class='price'>¥{{route.price}}</label>
     </view>
-  <view style="display: flex;margin-top:20px;">
-    <view style="display: flex; flex-direction:row;">
-      <view style="display: flex;flex-direction: column;margin:10px">
-            <label class='position'>{{route.startLocation.addr}}</label>
-            <label class='position'>{{route.endLocation.addr}}</label>
-            <label class='position'>{{route.routeTime}}</label>
-        </view>
+  </view>
+  <view>
+    <view style="display: flex;flex-direction: column;">
+        <label class='position'>{{route.startLocation.addr}}</label>
+        <label class='position'>{{route.endLocation.addr}}</label>
+        <label class='position'>{{route.routeTime}}</label>         
     </view>
   </view>
-      <map class="map" longitude="120.19" latitude="30.26"></map>
-  </view>
+  <map class="map" longitude="{{route.startLocation.longitude}}" latitude="{{route.startLocation.latitude}}"></map>
+</view>
+
 <form bindsubmit="formSubmit" report-submit="true">
-   <view class="btn-area">
+   <view>
      <button formType="submit" lang="zh_CN" type="primary">{{isDriver=='true'?'接单':'请他来接我'}}</button>
   </view>
-</form>
-   
+</form>   

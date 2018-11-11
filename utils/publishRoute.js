@@ -11,9 +11,9 @@ function addRoute(db,collect,event,userInfo){
       userInfo: userInfo,
       // endPoint: new db.Geo.Point(113, 23),
       startLocation: {
-        address:event.detail.value.startLocaion,
+        address:event.detail.value.startLocation,
         addr: event.detail.value.startAddr,
-        longitude: event.detail.value.startLongitude,                         latitude:event.detail.value.startLatitude
+        longitude: event.detail.value.startLongitude,                           latitude:event.detail.value.startLatitude
       },
       endLocation: {
         address:event.detail.value.endLocation,
@@ -34,8 +34,11 @@ function addRoute(db,collect,event,userInfo){
   })
 }
 
-function get_driver_route(db, that){
-  db.collection('driver_route').get({
+function get_driver_route(db, that, condition){
+  var coll=db.collection('driver_route')
+  if (condition != null)
+    coll = coll.where(condition)
+  coll.get({
       success: function (res) {
         // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
         that.setData({ routes: res.data})
@@ -47,8 +50,27 @@ function get_driver_route(db, that){
     })
 }
 
-function get_passenger_route(db, that) {
-  db.collection('passenger_route').get({
+function get_passenger_route(db, that,condition) {
+  var coll=db.collection('passenger_route');
+  if(condition!=null)
+    coll=coll.where(condition)
+  coll.get({
+    success: function (res) {
+      // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
+      that.setData({ routes: res.data })
+      console.log(res.data)
+    },
+    fail: function (res) {
+      console.log(res)
+    }
+  })
+}
+
+function get_bargin_route(db, that, condition) {
+  var coll = db.collection('bargin_route');
+  if (condition != null)
+    coll = coll.where(condition)
+  coll.get({
     success: function (res) {
       // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
       that.setData({ routes: res.data })
@@ -63,5 +85,6 @@ function get_passenger_route(db, that) {
 module.exports = {
   addRoute: addRoute,
   get_driver_route:get_driver_route,
-  get_passenger_route:get_passenger_route
+  get_passenger_route:get_passenger_route,
+  get_bargin_route: get_bargin_route
 }

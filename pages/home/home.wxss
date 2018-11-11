@@ -22,4 +22,3 @@ page{
   }
 
 @import "../drivers/drivers.wxss";
-@import "../passengers/passengers.wxss"

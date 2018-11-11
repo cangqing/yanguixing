@@ -6,11 +6,6 @@ const db = wx.cloud.database()
 Page({
   data: {
     isDriver: false,
-    //当前位置
-    address: '',
-    //坐标
-    startPoint:null,
-    endPoint:null,
     //具体位置
     startLocation:null,
     endLocation:null,

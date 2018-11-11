@@ -1,0 +1,9 @@
+<block wx:for="{{routes}}" wx:for-item="route">
+  <view style="margin-top:30px;">
+    <view style="display: flex;flex-direction: column;margin:10px">
+        <label class='position'>{{route.startLocation.addr}}</label>
+        <label class='position'>{{route.endLocation.addr}}</label>
+        <label class='position'>{{route.routeTime}}</label>
+      </view>
+  </view>
+</block>

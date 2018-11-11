@@ -12,8 +12,10 @@ Page({
     routes: null
   },
   detail: function (event) {
+    console.log(event)
+    var routId=event.currentTarget.dataset.routeid;
     wx.navigateTo({
-      url: '../detail/detail?isDriver=' + this.data.isDriver
+      url: '../detail/detail?isDriver=' + !this.data.isDriver +"&routeId="+routId
     })
   },
   /**
@@ -23,9 +25,9 @@ Page({
     this.setData({ isDriver: options.isDriver=='true'?true:false })
     console.log("this.data.isDriver:" + this.data.isDriver)
     if (this.data.isDriver)
-      publishRoute.get_passenger_route(db, this)
+      publishRoute.get_passenger_route(db, this,null)
     else
-      publishRoute.get_driver_route(db, this)
+      publishRoute.get_driver_route(db, this, null)
   },
 
   /**
