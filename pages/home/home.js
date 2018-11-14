@@ -25,15 +25,23 @@ Page({
   },
   publishPassengerRoute: function (event){
     console.log(event)
-    publishRoute.addRoute(db, 'passenger_route', event, getApp().globalData.userInfo)
+    userInfo = getApp().globalData.userInfo
+    userInfo.openId = getApp().globalData.openId
+    publishRoute.addRoute(db, 'passenger_route', event, userInfo)
     wx.navigateTo({
-      url: '../drivers/drivers?isDriver=' + this.data.isDriver
+      url: '../drivers/drivers?isDriver=' + this.data.isDriver,
+      success: function(res) {
+        console.log(res)
+      },fail:function(res){
+        console.log(res)
+      }
     })
-    publishRoute.get_driver_route(db, this)
   },
   publishDriverRoute: function (event) {
     console.log(event)
-    publishRoute.addRoute(db, 'driver_route', event, getApp().globalData.userInfo)
+    userInfo = getApp().globalData.userInfo
+    userInfo.openId = getApp().globalData.openId
+    publishRoute.addRoute(db, 'driver_route', event, userInfo)
     wx.navigateTo({
       url: '../drivers/drivers?isDriver=' + this.data.isDriver
     })
@@ -71,6 +79,7 @@ Page({
       success: function (res) {
         console.log(res);
         const { city } = res.result.address_component
+        getApp().globalData.city = city
         console.log(res.result.address);
         that.setData({ address: res.result.address })
       },

@@ -2,10 +2,10 @@
   "cloud": true,
   "pages": [
     "pages/home/home",
-    "pages/index/index",
+    "pages/position/position",
     "pages/drivers/drivers",
     "pages/myroutes/myroutes",
-    "pages/logs/logs",
+    "pages/messages/messages",
     "pages/detail/detail",
     "pages/certificate/certificate",
     "pages/enterprise/enterprise",
@@ -31,7 +31,7 @@
       },
       {
         "text": "消息",
-        "pagePath": "pages/drivers/drivers",
+        "pagePath": "pages/messages/messages",
         "iconPath": "resources/icon_cate.png",
         "selectedIconPath": "resources/icon_home.png"
       },

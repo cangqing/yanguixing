@@ -35,7 +35,7 @@ Page({
     console.log("Searching " + e.detail.value)
     getApp().globalData.qqmapsdk.getSuggestion({
       keyword: e.detail.value,
-      region: "杭州市",
+      region: getApp().globalData.city,
       success: function (res) {
         console.log(res);
         var targets=new Array()
