@@ -13,7 +13,6 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     itemList: [
     { 'name': '车主认证', 'icon': '../../../images/address.png', 'url': '../certificate/certificate' },
-      { 'name': '企业认证', 'icon': '../../../images/order.png', 'url': '../enterprise/enterprise' },
       { 'name': '历史行程', 'icon': '../../../images/order.png', 'url': '../myroutes/myroutes' },
     { 'name': '联系我们', 'icon': '../../../images/contact.png', 'url': '' }
     ]

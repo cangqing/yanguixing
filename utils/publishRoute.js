@@ -82,10 +82,12 @@ function get_bargin_route(db, that, condition) {
   })
 }
 
-function save_certificate_images(db,arr){
-  db.collection('certificate').add({
+function save_certificate_images(db,openid,arr){
+  db.collection('certificate').doc(openid).set({
     data: {
-      fileIds: arr
+      _id: openid,
+      fileIds: arr,
+      certificate_status:0
       },
       success: function (res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id

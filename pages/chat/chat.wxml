@@ -1,0 +1,35 @@
+<view class='news'>
+  <view class='new_top_txt'>您正在与{{tabdata.nickname}}进行沟通</view>
+  <view class="historycon">
+    <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="history" wx:for="{{messages}}" wx:key=''>
+      <view>
+        <text class='time'>18:30</text>
+      </view>
+      <block wx:if='{{item.sender_openid=="222"}}'>
+        <view class='my_right'>
+          <view class='page_row'>
+            <text class='new_txt'>{{item.content}}</text>
+            <image wx:if='{{item.sender_openid=="222"}}' src='{{item.sender_avatar}}' class='new_imgtent'></image>
+            <view class='sanjiao my'></view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='you_left'>
+          <view class='page_row'>
+            <image class='new_img' src='{{item.receiver_avatar}}'></image>
+            <view class='sanjiao you'></view>
+            <text class='new_txt'>{{item.content}}</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+<view class='hei' id="hei"></view>
+<view class="sendmessage">
+  <input type="emoji" bindinput="input" confirm-type="done" value='' placeholder="" />
+  <button style="width:80px;" catchtap="send">发送</button>
+  <input style='display:none' type="" bindinput="input" confirm-type="done" placeholder="" />
+  <image bindtap="upimg1" class='jia_img' src='../../../images/jia_img.png'></image>
+  </view>

@@ -1,14 +1,23 @@
-//logs.js
-var util = require('../../utils/util.js')
+var publishMessage = require('../../utils/publishMessage.js');
+const db = wx.cloud.database()
+
 Page({
   data: {
-    logs: []
+    partners: null
   },
   onLoad: function () {
     this.setData({
-      logs: (wx.getStorageSync('logs') || []).map(function (log) {
-        return util.formatTime(new Date(log))
+      partners: publishMessage.getPartners(db,this)
       })
+  },
+  chat: function (event) {
+    wx.navigateTo({
+      url: '../chat/chat?id=' + event.currentTarget.dataset.id,
+      success: function (res) {
+        console.log(res)
+      }, fail: function (res) {
+        console.log(res)
+      }
     })
   }
 })

@@ -6,6 +6,7 @@
     "pages/drivers/drivers",
     "pages/myroutes/myroutes",
     "pages/messages/messages",
+    "pages/chat/chat",
     "pages/detail/detail",
     "pages/certificate/certificate",
     "pages/enterprise/enterprise",
