@@ -11,7 +11,7 @@ function sendMessage(db,collect,message){
       console.log(res)
     }
   })
-  var id = message.sender_openid +"-"+ message.receiver_openid
+  var id = message.sender_openid +"&"+ message.receiver_openid
   db.collection("chat_partner").doc(id).set({
     data: { 
       sender_openid:message.sender_openid,

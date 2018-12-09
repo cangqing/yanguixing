@@ -16,8 +16,16 @@ Page({
     console.log(e.detail.userInfo)
     console.log(e.detail.rawData)
   },
-  formSubmit: function (e) {
-    console.log(e.detail.formId)
+  formSubmit: function (event) {
+    console.log(event.detail.formId)
+    wx.navigateTo({
+      url: '../chat/chat?id=' + event.detail.value.receiver_openid,
+      success: function (res) {
+        console.log(res)
+      }, fail: function (res) {
+        console.log(res)
+      }
+    })
   },
   /**
    * Lifecycle function--Called when page load

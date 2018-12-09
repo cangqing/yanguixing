@@ -23,6 +23,7 @@
 
 <form bindsubmit="formSubmit" report-submit="true">
    <view>
-     <button formType="submit" lang="zh_CN" type="primary">{{isDriver=='true'?'接单':'请他来接我'}}</button>
+    <input name="receiver_openid" style='display:none;' value="{{route.publish_openid}}"></input>
+    <button formType="submit" lang="zh_CN" type="primary">{{isDriver=='true'?'接单':'请他来接我'}}</button>
   </view>
-</form>   
+</form>

@@ -1,30 +1,32 @@
- {{certificate[0]._id}}
-<view class="question-form">
-  <view class="question-images-area">
-      <!-- 添加图片按钮 -->
-    <view class="question-images-tool">
-      <button type="default" size="mini" bindtap="chooseImage" wx:if="{{images.length < 6}}">上传图片</button
-      
-      
-      
-      
-      
-      
-      
-      
-      >
-    </view>
-    <view class="question-images">
-      <block wx:for="{{images}}" wx:key="*this">
-        <view class="q-image-wrap">
-          <!-- 图片缩略图  -->
-          <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
-          <!-- 移除图片的按钮  -->
-          <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view>
-        </view>
-      </block>
-    </view>
+<block wx:if='{{certificate.certificate_status==0}}'>
+  <view class="question-form">
+      证件审核中，请稍等
   </view>
-    <!-- 提交表单按钮 -->
-  <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
-</view>
+</block>
+<block wx:elif='{{certificate.certificate_status==1}}'>
+  <view class="question-form">
+      审核已通过，快去接单吧
+  </view>
+</block>
+<block wx:else>
+  <view class="question-form">
+    <view class="question-images-area">
+        <!-- 添加图片按钮 -->
+      <view class="question-images-tool">
+        <button type="default" size="mini" bindtap="chooseImage" wx:if="{{images.length < 6}}">上传图片</button>
+      </view>
+      <view class="question-images">
+        <block wx:for="{{images}}" wx:key="*this">
+          <view class="q-image-wrap">
+            <!-- 图片缩略图  -->
+            <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+            <!-- 移除图片的按钮  -->
+            <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view>
+          </view>
+        </block>
+      </view>
+    </view>
+      <!-- 提交表单按钮 -->
+    <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+  </view>
+</block>

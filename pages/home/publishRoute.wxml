@@ -1,14 +1,14 @@
 <template name="publishRoute">
-  <form bindsubmit="{{isDriver?'publishDriverRoute':'publishPassengerRoute'}}">
+  <form bindsubmit="publishRoute">
       <view style="display: flex;flex-direction: column;">
-          <input bindtap="inputStartPosition" style='padding: 10rpx;width:300px;margin-top: 10px;' placeholder="当前位置?" value="{{startLocation.address}}"></input>
-          <input name="startLocation" style='display:none;' value="{{startLocation.address}}"></input>
+          <input bindtap="inputStartPosition" style='padding: 10rpx;width:300px;margin-top: 10px;' placeholder="当前位置?" value="{{startLocation.title}}"></input>
+          <input name="startLocation" style='display:none;' value="{{startLocation.title}}"></input>
           <input name="startAddr" style='display:none;' value="{{startLocation.title}}"></input>
           <input name="startLatitude" style='display:none;' value="{{startLocation.location.lat}}"></input>
           <input name="startLongitude" style='display:none;' value="{{startLocation.location.lng}}"></input>
 
-          <input bindtap="inputEndPosition" style='padding: 10rpx;width:300px;'placeholder="想要去哪儿?" value="{{endLocation.address}}"></input>
-          <input name="endLocation" style='display:none;' value="{{endLocation.address}}"></input>
+          <input bindtap="inputEndPosition" style='padding: 10rpx;width:300px;'placeholder="想要去哪儿?" value="{{endLocation.title}}"></input>
+          <input name="endLocation" style='display:none;' value="{{endLocation.title}}"></input>
           <input name="endAddr" style='display:none;' value="{{endLocation.title}}"></input>
           <input name="endLatitude" style='display:none;' value="{{endLocation.location.lat}}"></input>
           <input name="endLongitude" style='display:none;' value="{{endLocation.location.lng}}"></input>

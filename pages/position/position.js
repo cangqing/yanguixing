@@ -62,14 +62,14 @@ Page({
   },
   wxSearchBlur: function (e) {
     var that = this
-    WxSearch.wxSearchBlur(e, that);
+    //WxSearch.wxSearchBlur(e, that);
   },
   //选择提示词后回调
   wxSearchKeyTap: function (e) {
     var that = this
-    WxSearch.wxSearchKeyTap(e, that);
     this.data.selectedLocation = this.data.queryLocations[e.target.dataset.key]
     console.log(this.data.selectedLocation)
+    WxSearch.wxSearchKeyTap(e, that);
   },
   wxSearchDeleteKey: function (e) {
     var that = this
@@ -86,7 +86,7 @@ Page({
   },
   confirm: function (event) {
     console.log(event)
-    WxSearch.wxSearchAddHisKey(this);
+    //WxSearch.wxSearchAddHisKey(this);
     let pages = getCurrentPages();//当前页面
     let prevPage = pages[pages.length - 2];//上一页面
     var data={}

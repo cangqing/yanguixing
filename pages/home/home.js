@@ -23,28 +23,36 @@ Page({
     console.log(event)
     this.setData({ isDriver: true })
   },
-  publishPassengerRoute: function (event){
-    console.log(event)
-    userInfo = getApp().globalData.userInfo
-    userInfo.openId = getApp().globalData.openId
-    publishRoute.addRoute(db, 'passenger_route', event, userInfo)
-    wx.navigateTo({
-      url: '../drivers/drivers?isDriver=' + this.data.isDriver,
-      success: function(res) {
-        console.log(res)
-      },fail:function(res){
-        console.log(res)
-      }
-    })
-  },
-  publishDriverRoute: function (event) {
-    console.log(event)
-    userInfo = getApp().globalData.userInfo
-    userInfo.openId = getApp().globalData.openId
-    publishRoute.addRoute(db, 'driver_route', event, userInfo)
-    wx.navigateTo({
-      url: '../drivers/drivers?isDriver=' + this.data.isDriver
-    })
+  publishRoute: function (event) {
+    var userInfo = getApp().globalData.userInfo
+    var openId = getApp().globalData.openId
+    var that=this
+    db.collection('certificate').where({ _id: openId}).
+      get({
+        success: function (res) {
+          if (res.data == null || res.data.length > 0) {
+            var certificate = res.data[0]
+            console.log(certificate)                        
+            if(certificate.certificate_status !=1){
+              wx.navigateTo({
+                url: '../certificate/certificate'
+              })
+            }
+            else {
+              userInfo.openId = openId
+              var route_collection = that.data.isDriver ? 'driver_route': 'passenger_route';
+              console.log("publish " + route_collection)
+              publishRoute.addRoute(db, route_collection, event, userInfo)
+              wx.navigateTo({
+                url: '../drivers/drivers?isDriver=' + that.data.isDriver
+              })
+            }
+          }
+        }, 
+        fail: function (res) {
+          console.log(res)
+        }
+      });
   },
   changeDateTime: function(e) {
     this.setData({ dateTime: e.detail.value });
@@ -91,13 +99,13 @@ Page({
   inputStartPosition: function (e) {
     console.log("bindfocus start")
     wx.navigateTo({
-      url: '../index/index?isStartPos=true&isDriver=' + this.data.isDriver
+      url: '../position/position?isStartPos=true&isDriver=' + this.data.isDriver
     })
   },
   inputEndPosition: function (e) {
     console.log("bindfocus end")
     wx.navigateTo({
-      url: '../index/index?isStartPos=false&isDriver=' + this.data.isDriver
+      url: '../position/position?isStartPos=false&isDriver=' + this.data.isDriver
     })
   }
 })

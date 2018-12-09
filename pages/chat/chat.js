@@ -25,7 +25,7 @@ Page({
   send: function (e) {
     var data = {
       receiver_openid: '222',
-      sender_openid: '111',
+      sender_openid: getApp().globalData.openid,
       sender_nick: getApp().globalData.userInfo.nickName,
       receiver_nick: getApp().globalData.userInfo.nickName,
       sender_avatar: getApp().globalData.userInfo.avatarUrl,

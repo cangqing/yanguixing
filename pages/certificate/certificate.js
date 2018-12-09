@@ -54,8 +54,11 @@ Page({
         console.log(res)
         arr.push(res.fileID)
         if (arr.length >= this.data.images.length){
-          publishRoute.save_certificate_images(db,arr)
+          var openid = getApp().globalData.openid
+          console.log(openid)
+          publishRoute.save_certificate_images(db,openid,arr)
           wx.hideLoading()
+          this.onLoad()
         }
       }).catch(error => {
         // handle error
@@ -64,7 +67,7 @@ Page({
       })
     }
     wx.showLoading({
-      title: '正在上传，请稍后...',
+      title: '正在上传...',
       mask: true
     })
   }
