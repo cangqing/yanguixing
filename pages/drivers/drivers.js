@@ -15,7 +15,7 @@ Page({
     console.log(event)
     var routId=event.currentTarget.dataset.routeid;
     wx.navigateTo({
-      url: '../detail/detail?isDriver=' + !this.data.isDriver +"&routeId="+routId
+      url: '../detail/detail?isDriver=' + this.data.isDriver +"&routeId="+routId
     })
   },
   /**

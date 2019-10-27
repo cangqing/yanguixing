@@ -1,10 +1,9 @@
 import { promisify } from '../../utils/promise.util'
 import { $init, $digest } from '../../utils/common.util'
-var publishRoute = require('../../utils/publishRoute.js');
-const db = wx.cloud.database()
-
+var publishCertificate = require('../../utils/publishCertificate.js');
 const wxUploadFile = promisify(wx.uploadFile)
 
+const db = wx.cloud.database()
 Page({
   data: {
     images: [],
@@ -13,7 +12,7 @@ Page({
 
   onLoad(options) {
     $init(this)
-    publishRoute.get_one_certificate(db,{},this)
+    publishCertificate.get_one_certificate(db,{},this)
   },
   chooseImage(e) {
     wx.chooseImage({
@@ -21,7 +20,7 @@ Page({
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {
         const images = this.data.images.concat(res.tempFilePaths)
-        // 限制最多只能留下1张照片
+        // 限制最多只能留下5张照片
         this.data.images = images.length <= 5 ? images : images.slice(0, 5)
         $digest(this)
       }
@@ -56,7 +55,7 @@ Page({
         if (arr.length >= this.data.images.length){
           var openid = getApp().globalData.openid
           console.log(openid)
-          publishRoute.save_certificate_images(db,openid,arr)
+          publishCertificate.save_certificate_images(db,openid,arr)
           wx.hideLoading()
           this.onLoad()
         }

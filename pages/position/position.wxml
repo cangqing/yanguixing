@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<import src="../wxSearch/wxSearch.wxml"/>
+<import src="wxSearch/wxSearch.wxml"/>
 <form bindsubmit="confirm">
   <view class="wxSearch-section">
     <view class="wxSearch-pancel">

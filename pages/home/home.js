@@ -27,32 +27,38 @@ Page({
     var userInfo = getApp().globalData.userInfo
     var openId = getApp().globalData.openId
     var that=this
-    db.collection('certificate').where({ _id: openId}).
-      get({
-        success: function (res) {
-          if (res.data == null || res.data.length > 0) {
-            var certificate = res.data[0]
-            console.log(certificate)                        
-            if(certificate.certificate_status !=1){
+    if(that.data.isDriver){
+      db.collection('certificate').where({ _id: openId }).
+        get({
+          success: function (res) {
+            pass=false
+            if (res.data.length > 0) {
+              var certificate = res.data[0]
+              console.log(certificate)
+              if (certificate.certificate_status == 1) 
+                  pass=true
+            }
+            if (!pass) {
               wx.navigateTo({
                 url: '../certificate/certificate'
               })
             }
-            else {
-              userInfo.openId = openId
-              var route_collection = that.data.isDriver ? 'driver_route': 'passenger_route';
-              console.log("publish " + route_collection)
-              publishRoute.addRoute(db, route_collection, event, userInfo)
-              wx.navigateTo({
-                url: '../drivers/drivers?isDriver=' + that.data.isDriver
-              })
-            }
+          }, 
+          fail: function (res) {
+            console.log(res)
           }
-        }, 
-        fail: function (res) {
-          console.log(res)
-        }
-      });
+        })
+    }
+    //发布行程
+    {
+      userInfo.openId = openId
+      var route_collection = that.data.isDriver ? 'driver_route' : 'passenger_route';
+      console.log("publish " + route_collection)
+      publishRoute.addRoute(db, route_collection, event, userInfo)
+      wx.navigateTo({
+        url: '../drivers/drivers?isDriver=' + that.data.isDriver
+      })
+    }
   },
   changeDateTime: function(e) {
     this.setData({ dateTime: e.detail.value });

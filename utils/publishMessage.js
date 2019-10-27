@@ -1,3 +1,4 @@
+//utils/publishMessage.js
 var utils = require('util.js');
 
 function sendMessage(db,collect,message){

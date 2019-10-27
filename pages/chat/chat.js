@@ -1,4 +1,3 @@
-//logs.js
 var util = require('../../utils/util.js')
 var publishMessage = require('../../utils/publishMessage.js');
 const db = wx.cloud.database()

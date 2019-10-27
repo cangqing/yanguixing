@@ -10,7 +10,7 @@
     "pages/detail/detail",
     "pages/certificate/certificate",
     "pages/enterprise/enterprise",
-    "pages/mine/mine"
+    "pages/mine/mine" 
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -43,5 +43,6 @@
         "selectedIconPath": "resources/icon_home.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

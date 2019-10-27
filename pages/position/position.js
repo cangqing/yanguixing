@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-var WxSearch = require('../wxSearch/wxSearch.js')
+var WxSearch = require('wxSearch/wxSearch.js')
 var app = getApp()
 Page({
   data: {
@@ -37,11 +37,11 @@ Page({
       keyword: e.detail.value,
       region: getApp().globalData.city,
       success: function (res) {
-        console.log(res);
         var targets=new Array()
-        for (let i = 0; i < res.count; ++i) {
-          targets.push(res.data[i].title)
-          that.data.queryLocations[res.data[i].title] = res.data[i]
+        for (let i = 0; i < res.data.length; i++) {
+            console.log("data="+res.data[i]);
+            targets.push(res.data[i].title)
+            that.data.queryLocations[res.data[i].title] = res.data[i]
         }
         console.log(targets)
         WxSearch.initMindKeys(targets)
@@ -95,7 +95,7 @@ Page({
     }else{
       data = { isStartPos: this.data.isStartPos, endLocation: this.data.selectedLocation}
     }
-    //直接给上移页面赋值
+    //直接给上一页面赋值
     prevPage.setData(data);
     wx.navigateBack({
       delta: 1
